@@ -4,11 +4,9 @@ using System.Text;
 
 namespace SecretSanta.Domain.Services
 {
-    class Users
+    public class Messages
     {
-        public Boolean UpdateUser(int UserID)
-        {
-            return false;
-        }
+        public int UserID;
+        public List<string> MessageLog;
     }
 }

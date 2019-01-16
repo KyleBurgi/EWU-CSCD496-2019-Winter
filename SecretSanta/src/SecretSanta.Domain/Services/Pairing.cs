@@ -4,11 +4,11 @@ using System.Text;
 
 namespace SecretSanta.Domain.Services
 {
-    class Users
+    class Pairing
     {
-        public Boolean UpdateUser(int UserID)
+        public void CreatePairing()
         {
-            return false;
+
         }
     }
 }
