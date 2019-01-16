@@ -8,6 +8,7 @@ namespace SecretSanta.Domain
     {
         public User Santa { get; set; }
         public User Recipient { get; set; }
-        public List<string> Messages { get; set; }
+        public DateTime Timestamp { get; set; }
+        public string MessageText { get; set; }
     }
 }

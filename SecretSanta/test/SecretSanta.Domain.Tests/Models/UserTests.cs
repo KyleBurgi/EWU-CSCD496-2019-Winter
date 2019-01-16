@@ -1,20 +1,27 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using SecretSanta.Domain;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using SecretSanta.Domain;
 
-namespace SecretSanta.Domain.Tests
+namespace SecretSanta.Domain.Tests.Models
 {
     [TestClass]
-    class UserTests
+    public class UserTests
     {
         [TestMethod]
-        public void MyFirstTestMethod()
+        public void PassFirstName()
         {
             User u = new User { FirstName = "Kyle", LastName = "Burgi" };
             Assert.AreEqual("Kyle", u.FirstName);
+        }
+
+        [TestMethod]
+        public void PassLastName()
+        {
+            User u = new User { FirstName = "Kyle", LastName = "Burgi" };
             Assert.AreEqual("Burgi", u.LastName);
         }
+
     }
 }

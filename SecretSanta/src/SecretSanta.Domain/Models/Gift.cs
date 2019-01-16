@@ -11,6 +11,14 @@ namespace SecretSanta.Domain
         public string Url { get; set; }
         public string Description { get; set; }
         public User User { get; set; }
-        //public UserId UserId { get; set; }
+
+        public Gift(string giftTitle, int orderOfImport, string url, string description, User user)
+        {
+            GiftTitle = giftTitle;
+            OrderOfImportance = orderOfImport;
+            Url = url;
+            Description = description;
+            User = user;
+        }
     }
 }
