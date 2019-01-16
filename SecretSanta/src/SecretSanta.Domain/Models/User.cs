@@ -10,11 +10,5 @@ namespace SecretSanta.Domain
         public string LastName { get; set; }
         public List<Gift> Gifts { get; set; }
         public List<Group> Groups { get; set; }
-
-        public User(string firstName, string lastName)
-        {
-            FirstName = firstName;
-            LastName = lastName;
-        }
     }
 }
