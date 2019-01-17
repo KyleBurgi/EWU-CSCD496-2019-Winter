@@ -13,7 +13,7 @@ namespace SecretSanta.Domain.Tests.Models
         public void PassGroupTitle()
         {
             Group g = new Group { GroupTitle = "MerryChristmasOfficeParty" };
-            Assert.AreEqual(g.GroupTitle, "MerryChristmasOfficeParty");
+            Assert.AreEqual("MerryChristmasOfficeParty", g.GroupTitle);
         }
     }
 }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SecretSanta.Domain.Services
 {
-    class Pairing
+    public class Pairing
     {
         public void CreatePairing()
         {
