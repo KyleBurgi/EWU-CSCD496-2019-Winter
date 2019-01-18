@@ -1,31 +1,47 @@
-﻿using System;
+﻿using SecretSanta.Domain.Models;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace SecretSanta.Domain.Services
 {
     public class Gifts
     {
-        public int UserId;
+        private ApplicationDbContext DbContext { get; set; }
 
-        public void CreateGift()
+        public Gifts(ApplicationDbContext dbContext)
         {
-
+            DbContext = dbContext;
         }
 
-        public void EditGift()
+        public void CreateGift(User user, Gift gift)
         {
-
+            DbContext.Gifts.Add(gift);
+            DbContext.SaveChanges();
         }
 
-        public void DeleteGift()
+        public void AddGift(Gift gift)
         {
-
+            DbContext.Gifts.Add(gift);
+            DbContext.SaveChanges();
         }
 
-        public Gift GetGift(int giftId)
+        public void UpdateGift(User user, Gift gift)
         {
-            return null; //TEMP NULL FIX BEFORE FINISHED
+            if (gift.Id == default(int))
+                DbContext.Gifts.Add(gift);
+            else
+                DbContext.Gifts.Update(gift);
+
+            DbContext.SaveChanges();
+        }
+
+        public void DeleteGift(User user, Gift gift)
+        {
+            DbContext.Gifts.Remove(gift);
+            user.Gifts.Remove(gift);
+            DbContext.SaveChanges();
         }
     }
 }

@@ -25,21 +25,19 @@ namespace SecretSanta.Domain.Services
         public User AddUser(User user)
         {
             DbContext.Users.Add(user);
-
             DbContext.SaveChanges();
-
             return user;
         }
 
-        //Use this to see if a user exists
-        //If exists, return user
-        //Else, return null
-        private User Find(int id)
+        public User GetUserById(int userId)
         {
-            User user = null; //CHANGE BEFORE DONE
+            return DbContext.Users.Find(userId);
+        }
 
-            /* ADD HERE */
-
+        public User UpdateUser(User user)
+        {
+            DbContext.Users.Update(user);
+            DbContext.SaveChanges();
             return user;
         }
     }
