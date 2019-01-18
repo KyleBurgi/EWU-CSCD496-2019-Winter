@@ -1,14 +1,23 @@
-﻿using System;
+﻿using SecretSanta.Domain.Interfaces;
+using SecretSanta.Domain.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace SecretSanta.Domain
 {
-    public class User
+    public class User : Entity
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public List<Gift> Gifts { get; set; }
-        public List<Group> Groups { get; set; }
+        public ICollection<UserGroup> UserGroup { get; set; }
+        public ICollection<Gift> Gifts { get; set; }
+
+        public User()
+        {
+            Gifts = new List<Gift>();
+            UserGroup = new List<UserGroup>();
+        }
+
     }
 }
