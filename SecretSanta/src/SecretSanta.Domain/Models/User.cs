@@ -19,5 +19,11 @@ namespace SecretSanta.Domain
             UserGroup = new List<UserGroup>();
         }
 
+        public override string ToString()
+        {
+            //Console.Write(String.Format("{0}, {1}", LastName, FirstName));
+            return String.Format("{0}, {1}", LastName, FirstName);
+        }
+
     }
 }

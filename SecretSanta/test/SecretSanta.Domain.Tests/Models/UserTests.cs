@@ -13,12 +13,14 @@ namespace SecretSanta.Domain.Tests.Models
     [TestClass]
     public class UserTests
     {
-        private SqliteConnection SqliteConnection { get; set; }
-        private DbContextOptions<ApplicationDbContext> Options { get; set; }
+        public User TestUser { get; set; }
 
+        
         [TestInitialize]
-        public void OpenConnection()
+
+        public void TestingInitialize()
         {
+            TestUser = new User();
             SqliteConnection = new SqliteConnection("DataSource=:memory:");
             SqliteConnection.Open();
 
@@ -29,6 +31,25 @@ namespace SecretSanta.Domain.Tests.Models
                 dbContext.Database.EnsureCreated();
             }
         }
+
+        [TestMethod]
+        public void AddFirstName_Pass()
+        {
+            TestUser.FirstName = "Kyle";
+            Assert.AreEqual<String>("Kyle", TestUser.FirstName);
+        }
+
+        [TestMethod]
+        [DataRow("Kyle", "Burgi", "Burgi, Kyle")]
+        public void UserToString_Pass(string firstName, string lastName, string correctOutput)
+        {
+            TestUser.FirstName = firstName;
+            TestUser.LastName = lastName;
+            Assert.AreEqual(TestUser.ToString(), "Burgi, Kyle");
+        }
+        private SqliteConnection SqliteConnection { get; set; }
+        private DbContextOptions<ApplicationDbContext> Options { get; set; }
+
 
         [TestCleanup]
         public void CloseConnection()
