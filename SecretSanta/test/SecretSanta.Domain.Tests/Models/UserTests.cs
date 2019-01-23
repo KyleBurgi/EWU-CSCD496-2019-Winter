@@ -17,7 +17,6 @@ namespace SecretSanta.Domain.Tests.Models
 
         
         [TestInitialize]
-
         public void TestingInitialize()
         {
             TestUser = new User();
@@ -33,19 +32,44 @@ namespace SecretSanta.Domain.Tests.Models
         }
 
         [TestMethod]
-        public void AddFirstName_Pass()
+        [DataRow("Kyle")]
+        [DataRow("Mario")]
+        [DataRow("MeAnd")]
+        public void AddFirstName_Pass(string firstName)
         {
-            TestUser.FirstName = "Kyle";
-            Assert.AreEqual<String>("Kyle", TestUser.FirstName);
+            TestUser.FirstName = firstName;
+            Assert.AreEqual<String>(firstName, TestUser.FirstName);
+        }
+
+        [TestMethod]
+        [DataRow("Burgi")]
+        [DataRow("Mario")]
+        [DataRow("Mrs. Jones")]
+        public void AddLastName_Pass(string lastName)
+        {
+            TestUser.LastName = lastName;
+            Assert.AreEqual<String>(lastName, TestUser.LastName);
         }
 
         [TestMethod]
         [DataRow("Kyle", "Burgi", "Burgi, Kyle")]
+        [DataRow("Mario","Mario", "Mario, Mario")]
+        [DataRow("MeAnd", "Mrs. Jones", "Mrs. Jones, MeAnd")]
         public void UserToString_Pass(string firstName, string lastName, string correctOutput)
         {
             TestUser.FirstName = firstName;
             TestUser.LastName = lastName;
-            Assert.AreEqual(TestUser.ToString(), "Burgi, Kyle");
+            Assert.AreEqual(TestUser.ToString(), correctOutput);
+        }
+
+        [TestMethod]
+        [DataRow(typeof(ArgumentNullException), "Kyle", null)]
+        [DataRow(typeof(ArgumentNullException), null, "Burgi")]
+        [DataRow(typeof(ArgumentNullException), null, null)]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void Add_User_ThrowArgumentNullException(Type exceptionType, string firstName, string lastName)
+        {
+            TestUser = new User(firstName, lastName);
         }
         private SqliteConnection SqliteConnection { get; set; }
         private DbContextOptions<ApplicationDbContext> Options { get; set; }

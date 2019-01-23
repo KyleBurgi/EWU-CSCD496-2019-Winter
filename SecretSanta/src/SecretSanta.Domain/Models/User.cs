@@ -13,6 +13,15 @@ namespace SecretSanta.Domain
         public ICollection<UserGroup> UserGroup { get; set; }
         public ICollection<Gift> Gifts { get; set; }
 
+        public User(string firstName, string lastName)
+        {
+            if (firstName == null) throw new ArgumentNullException(nameof(firstName), "FirstNameNull");
+            if (lastName == null) throw new ArgumentNullException(nameof(lastName), "LastNameNull");
+
+            FirstName = firstName;
+            LastName = lastName;
+        }
+
         public User()
         {
             Gifts = new List<Gift>();
