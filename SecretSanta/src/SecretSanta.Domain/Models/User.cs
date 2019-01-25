@@ -2,6 +2,7 @@
 using SecretSanta.Domain.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace SecretSanta.Domain
@@ -32,6 +33,15 @@ namespace SecretSanta.Domain
         {
             //Console.Write(String.Format("{0}, {1}", LastName, FirstName));
             return String.Format("{0}, {1}", LastName, FirstName);
+        }
+
+        public List<string> PrintWishList()
+        {
+            List<string> wishlistTitles = new List<string>();
+            foreach (Gift g in Gifts)
+                wishlistTitles.Add(g.GiftTitle);
+
+            return wishlistTitles; 
         }
 
     }
