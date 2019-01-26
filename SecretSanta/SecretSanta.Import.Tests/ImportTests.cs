@@ -17,11 +17,10 @@ namespace SecretSanta.Import.Tests
         private static List<string> badTestListThree = new List<string> { "Kyle Burgi", "Coal", "Used Socks", "Value Village Gift Card" };
         private static List<string> goodTestListEmpty = new List<string> { "Name:Burgi, Kyle" };
         private static List<string> goodTestListEmptyTwo = new List<string> { "Name:Kyle Burgi" };
+
         [TestInitialize]
         public void TestInitialize()
         {
-            TestCleanup();
-
             if (!File.Exists(Path.GetTempPath() + "/goodTestListOne.txt"))
                 File.WriteAllLines(Path.GetTempPath() + "/goodTestListOne.txt", goodTestListOne);
 
@@ -37,7 +36,9 @@ namespace SecretSanta.Import.Tests
             if (!File.Exists(Path.GetTempPath() + "/goodTestListEmptyTwo.txt"))
                 File.WriteAllLines(Path.GetTempPath() + "/goodTestListEmptyTwo.txt", goodTestListEmptyTwo);
         }
+        
         [TestCleanup]
+
         public void TestCleanup()
         {
             if (File.Exists(Path.GetTempPath() + "/goodTestListOne.txt"))
@@ -52,10 +53,10 @@ namespace SecretSanta.Import.Tests
             if (File.Exists(Path.GetTempPath() + "/goodTestListEmpty.txt"))
                 File.Delete(Path.GetTempPath() + "/goodTestListEmpty.txt");
 
-            if (!File.Exists(Path.GetTempPath() + "/goodTestListEmptyTwo.txt"))
+            if (File.Exists(Path.GetTempPath() + "/goodTestListEmptyTwo.txt"))
                 File.Delete(Path.GetTempPath() + "/goodTestListEmptyTwo.txt");
         }
-
+        
         //Check Arguments From Here On
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
@@ -130,7 +131,6 @@ namespace SecretSanta.Import.Tests
             User checkUser = import.ReadHeader();
             import.ReadFileGifts(checkUser);
             checkUser.PrintWishList().Contains("Millions of Dollars");
-
         }
 
 

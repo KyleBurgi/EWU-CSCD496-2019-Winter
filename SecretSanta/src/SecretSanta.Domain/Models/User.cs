@@ -31,7 +31,6 @@ namespace SecretSanta.Domain
 
         public override string ToString()
         {
-            //Console.Write(String.Format("{0}, {1}", LastName, FirstName));
             return String.Format("{0}, {1}", LastName, FirstName);
         }
 
