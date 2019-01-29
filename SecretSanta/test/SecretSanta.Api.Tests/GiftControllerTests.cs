@@ -9,7 +9,7 @@ using System.Linq;
 namespace SecretSanta.Api.Tests
 {
     [TestClass]
-    public class GiftControllerTests
+    public class GiftControllerTests 
     {
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
