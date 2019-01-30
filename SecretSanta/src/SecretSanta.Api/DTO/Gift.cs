@@ -1,4 +1,5 @@
 ﻿using System;
+using SecretSanta.Domain.Models;
 
 namespace SecretSanta.Api.DTO
 {
@@ -24,6 +25,12 @@ namespace SecretSanta.Api.DTO
             Description = gift.Description;
             OrderOfImportance = gift.OrderOfImportance;
             Url = gift.Url;
+        }
+
+        public static Domain.Models.Gift ToEntity(DTO.Gift gift)
+        {
+            //pretend this is implemented
+            return null;
         }
     }
 }
