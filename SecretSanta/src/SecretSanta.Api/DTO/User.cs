@@ -10,8 +10,6 @@ namespace SecretSanta.Api.DTO
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public List<Gift> Gifts { get; set; }
-        //public List<GroupUser> GroupUsers { get; set; }
 
         public User() { }
 
@@ -22,14 +20,18 @@ namespace SecretSanta.Api.DTO
             Id = user.Id;
             FirstName = user.FirstName;
             LastName = user.LastName;
-            //TODO: Gifts
-            //TODO: GroupUsers
         }
 
-        public static Domain.Models.User ToEntity(DTO.User gift)
+        public static Domain.Models.User ToEntity(DTO.User user)
         {
-            //pretend this is implemented
-            return null;
+            if (user == null)
+            {
+                throw new ArgumentNullException(nameof(user));
+            }
+
+            return new Domain.Models.User
+            { Id = user.Id, FirstName = user.FirstName, LastName = user.LastName };
+            
         }
     }
 }

@@ -1,7 +1,7 @@
-﻿using System;
+﻿using SecretSanta.Domain.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Text.RegularExpressions;
 
 namespace SecretSanta.Domain.Services
 {

@@ -20,12 +20,13 @@ namespace SecretSanta.Api.Controllers
         }
 
         [HttpGet("{userId}")]
-        public ActionResult<List<User>> FetchAll()
+        public ActionResult<List<DTO.User>> FetchAll()
         {
-            return _UserService.FetchAll();
+            List<User> databaseUsers = _UserService.FetchAll();
+            return databaseUsers.Select(x => new DTO.User(x)).ToList();
         }
 
-        [HttpGet("{userId}")]
+        [HttpPut("{userId}")]
         public ActionResult<User> AddUser(DTO.User user)
         {
             if (user == null)
@@ -34,10 +35,10 @@ namespace SecretSanta.Api.Controllers
             }
 
             _UserService.AddUser(DTO.User.ToEntity(user));
-            return Ok();
+            return Ok("User Added");
         }
 
-        [HttpGet("{userId}")]
+        [HttpPut("{userId}")]
         public ActionResult<User> UpdateUser(DTO.User user)
         {
             if (user == null)
@@ -46,7 +47,7 @@ namespace SecretSanta.Api.Controllers
             }
 
             _UserService.UpdateUser(DTO.User.ToEntity(user));
-            return Ok();
+            return Ok("User Updated");
         }
     }
 }

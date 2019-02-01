@@ -32,7 +32,7 @@ namespace SecretSanta.Api.Controllers
         }
 
         // GET api/Gift/4
-        [HttpGet("{userId}")]
+        [HttpPut("{userId}")]
         public ActionResult<List<DTO.Gift>> AddGiftToUser(int userId, DTO.Gift gift)
         {
             if (userId <= 0)
@@ -46,10 +46,10 @@ namespace SecretSanta.Api.Controllers
             }
 
             _GiftService.AddGiftToUser(userId, DTO.Gift.ToEntity(gift));
-            return Ok();
+            return Ok("Added Gift To User");
         }
 
-        [HttpGet("{userId}")]
+        [HttpPut("{userId}")]
         public ActionResult<List<DTO.Gift>> UpdateGiftForUser(int userId, DTO.Gift gift)
         {
             if (userId <= 0)
@@ -63,10 +63,10 @@ namespace SecretSanta.Api.Controllers
             }
 
             _GiftService.UpdateGiftForUser(userId, DTO.Gift.ToEntity(gift));
-            return Ok();
+            return Ok("Updated Gift For User");
         }
 
-        [HttpGet("{userId}")]
+        [HttpDelete("{userId}")]
         public void RemoveGift(DTO.Gift gift)
         {
             if (gift == null)
