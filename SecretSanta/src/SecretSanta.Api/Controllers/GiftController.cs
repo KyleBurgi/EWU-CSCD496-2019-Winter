@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using SecretSanta.Api.ViewModels;
@@ -9,7 +9,7 @@ using SecretSanta.Domain.Services.Interfaces;
 
 namespace SecretSanta.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]")] 
     [ApiController]
     public class GiftController : ControllerBase
     {
