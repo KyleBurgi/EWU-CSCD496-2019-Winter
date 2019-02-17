@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SecretSanta.Domain.Models;
+using System.Threading.Tasks;
 
 namespace SecretSanta.Domain.Tests.Services
 {
@@ -26,10 +27,10 @@ namespace SecretSanta.Domain.Tests.Services
         protected DbContextOptions<ApplicationDbContext> Options { get; private set; }
 
         [TestInitialize]
-        public void OpenConnection()
+        public async Task OpenConnection()
         {
             SqliteConnection = new SqliteConnection("DataSource=:memory:");
-            SqliteConnection.Open();
+            await SqliteConnection.OpenAsync();
 
             Options = new DbContextOptionsBuilder<ApplicationDbContext>()
                 .UseSqlite(SqliteConnection)
@@ -37,9 +38,9 @@ namespace SecretSanta.Domain.Tests.Services
                 .EnableSensitiveDataLogging()
                 .Options;
 
-            using (var context = new ApplicationDbContext(Options))
+            using (ApplicationDbContext context = new ApplicationDbContext(Options))
             {
-                context.Database.EnsureCreated();
+                await context.Database.EnsureCreatedAsync();
             }
         }
 
